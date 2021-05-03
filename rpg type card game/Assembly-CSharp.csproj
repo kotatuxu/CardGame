@@ -59,24 +59,32 @@
     <UnityVersion>2020.1.6f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Assets\game\Hand.cs" />
-    <Compile Include="Assets\game\DeckCopyCopy.cs" />
-    <Compile Include="Assets\game\CardController.cs" />
-    <Compile Include="Assets\game\DfeCard.cs" />
-    <Compile Include="Assets\game\Card.cs" />
-    <Compile Include="Assets\game\MenuFolder\MenuOpen.cs" />
-    <Compile Include="Assets\game\SetButton.cs" />
-    <Compile Include="Assets\game\AtkCard.cs" />
-    <Compile Include="Assets\game\Enemy.cs" />
-    <Compile Include="Assets\game\GameMaster.cs" />
-    <Compile Include="Assets\game\Graveyard.cs" />
-    <Compile Include="Assets\game\ResetButton.cs" />
-    <Compile Include="Assets\game\DeckEscape.cs" />
+    <Compile Include="Assets\game\Player\Hand.cs" />
+    <Compile Include="Assets\game\Enemy\EnemyCard.cs" />
+    <Compile Include="Assets\game\MenuFolder\DeckCardList.cs" />
     <Compile Include="Assets\game\MenuFolder\Menu.cs" />
-    <Compile Include="Assets\game\CardEntity.cs" />
-    <Compile Include="Assets\game\Player.cs" />
-    <Compile Include="Assets\game\Deck.cs" />
-    <Compile Include="Assets\game\DeckButton.cs" />
+    <Compile Include="Assets\game\Enemy\EnemyDeck.cs" />
+    <Compile Include="Assets\game\Resources\Entity\EnemyEntity.cs" />
+    <Compile Include="Assets\game\Player\Card.cs" />
+    <Compile Include="Assets\game\Player\SetButton.cs" />
+    <Compile Include="Assets\game\Resources\Entity\EnemyCardEntity.cs" />
+    <Compile Include="Assets\game\Enemy\Enemy.cs" />
+    <Compile Include="Assets\game\ICardController.cs" />
+    <Compile Include="Assets\game\GameMaster.cs" />
+    <Compile Include="Assets\game\MenuFolder\DeckButton.cs" />
+    <Compile Include="Assets\game\Player\Graveyard.cs" />
+    <Compile Include="Assets\game\Resources\Entity\CardEntity.cs" />
+    <Compile Include="Assets\game\Enemy\EnemyHpText.cs" />
+    <Compile Include="Assets\game\Player\Hp.cs" />
+    <Compile Include="Assets\game\MenuFolder\DeckEscapeButton.cs" />
+    <Compile Include="Assets\game\MenuFolder\MenuButton.cs" />
+    <Compile Include="Assets\game\Player\Player.cs" />
+    <Compile Include="Assets\game\Player\Deck.cs" />
+    <Compile Include="Assets\game\Enemy\EnemyHand.cs" />
+    <Compile Include="Assets\game\AttackCardController.cs" />
+    <Compile Include="Assets\game\DefenseCardController.cs" />
+    <Compile Include="Assets\game\CardFactryCaseBattle.cs" />
+    <Compile Include="Assets\game\DodgeCardController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -616,8 +624,14 @@
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.Timeline.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEditor.CacheServer">
+      <HintPath>Library\ScriptAssemblies\UnityEditor.CacheServer.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.2D.Animation.Runtime">
       <HintPath>Library\ScriptAssemblies\Unity.2D.Animation.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ScriptableBuildPipeline.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.ScriptableBuildPipeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.PixelPerfect.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.2D.PixelPerfect.Editor.dll</HintPath>
@@ -634,11 +648,17 @@
     <Reference Include="Unity.2D.Path.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.2D.Path.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.ResourceManager">
+      <HintPath>Library\ScriptAssemblies\Unity.ResourceManager.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
       <HintPath>Library\ScriptAssemblies\Unity.Timeline.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Addressables.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.Addressables.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Animation.Triangle.Runtime">
       <HintPath>Library\ScriptAssemblies\Unity.2D.Animation.Triangle.Runtime.dll</HintPath>
@@ -679,6 +699,12 @@
     <Reference Include="Unity.VisualStudio.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.VisualStudio.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.Addressables">
+      <HintPath>Library\ScriptAssemblies\Unity.Addressables.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ScriptableBuildPipeline">
+      <HintPath>Library\ScriptAssemblies\Unity.ScriptableBuildPipeline.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Mathematics.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.Mathematics.Editor.dll</HintPath>
     </Reference>
@@ -693,24 +719,6 @@
     </Reference>
     <Reference Include="UnityEditor.UI">
       <HintPath>Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.CacheServer">
-      <HintPath>Library\ScriptAssemblies\UnityEditor.CacheServer.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.ScriptableBuildPipeline.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.ScriptableBuildPipeline.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.ResourceManager">
-      <HintPath>Library\ScriptAssemblies\Unity.ResourceManager.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Addressables.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.Addressables.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Addressables">
-      <HintPath>Library\ScriptAssemblies\Unity.Addressables.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.ScriptableBuildPipeline">
-      <HintPath>Library\ScriptAssemblies\Unity.ScriptableBuildPipeline.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup></ItemGroup>
