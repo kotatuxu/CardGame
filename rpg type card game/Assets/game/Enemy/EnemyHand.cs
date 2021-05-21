@@ -11,4 +11,9 @@ public class EnemyHand : MonoBehaviour
         _enemycard.transform.SetParent(this.transform);
         enemycardList.Add(_enemycard);
     }
+        public EnemyCard Pull(int _position){
+        EnemyCard enemycard = enemycardList[_position];
+        enemycardList.Remove(enemycard);
+        return enemycard;
+    }
 }

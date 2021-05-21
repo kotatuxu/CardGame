@@ -23,7 +23,9 @@ public class GameMaster : MonoBehaviour {
     public Card cardPrefab;
     public EnemyCard enemycardPrefab;
     public List<Card> battlecardList = new List<Card>();    //カードを選択した枚数
+    public List<EnemyCard> EnemybattlecardList = new List<EnemyCard>(); //上と同じだが、順番も兼ねる
     //プレイヤーのデッキの場所を示す
+    public int turn = 0;
     [SerializeField] Transform playerDeckTransform;
     [SerializeField] Transform playerHandTransform;
     [SerializeField] Transform enemyDeckTransform;
@@ -37,7 +39,7 @@ public class GameMaster : MonoBehaviour {
     };
     public enum CharacterID{
         PLAYER,
-        ENEMY
+        ENEMY,
     };
     enum Phase{
         INIT,
@@ -104,9 +106,9 @@ public class GameMaster : MonoBehaviour {
     public void SelectPhase(){      //セレクトフェーズ
         //Debug.Log(battlecardList.Count);
         if(battlecardList.Count == 5){      //battlecardListはカード選択時＋１するよ
-            setbutton.SetIventButton();
+            setbutton.SetIventButton();     //battlecardListが５ならセットボタンを生成する
         }else{
-            setbutton.CloseSetButton();     //battlecardListが５ならセットボタンを生成する
+            setbutton.CloseSetButton();     //battlecatdListが５でないならセットボタンをしまう
         }
     }
     public void NextPhaseBattle(){      //セットボタンクリックされた
@@ -114,8 +116,19 @@ public class GameMaster : MonoBehaviour {
     }
     void BattlePhase(){     //バトルフェーズ
         Debug.Log("BattlePhase");
+    for(int turn = 0; turn < 5; turn++){
+        Card _card = battlecardList[turn];     //バトルカードリストの０番目を_cardとする
+        EnemyCard _enemycard = EnemybattlecardList[turn];
+        if(_card.cardSpeed < _enemycard.cardSpeed){     //0が速い 3が遅い
+            Debug.Log("プレイヤーのターンから");
+        }else{
+            Debug.Log("エネミーから");
+        }
+        battlecardList.Remove(_card);   //バトルカードリストから削除
+        EnemybattlecardList.Remove(_enemycard);
+    }
 
-    phase = Phase.BATTLE;
+    phase = Phase.END;
     }
     void EndPhase(){
         Debug.Log("EndPhase");

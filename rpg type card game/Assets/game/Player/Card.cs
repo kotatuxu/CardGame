@@ -11,6 +11,8 @@ public class Card : MonoBehaviour
     private Image m_Image;
     private bool battlecard;
     private CardEntity m_cardEntity;
+    public int battlenumber = 0;    //
+    public int cardSpeed = 0;
     private string[] m_cardname = new string[]{
         "SLASH",
         "GUARD",
@@ -27,18 +29,19 @@ public class Card : MonoBehaviour
         battlecard = isbattle;
         //todo..デッキの紹介文を追加する場合はファクトリーを変える処理を追加する
         factry = new CardFactryCaseBattle();
-        icardcon = factry.CreateCard(ID);
+        icardcon = factry.CreateCard(ID);   //IDはゲームマスターのRandom.Range
     }
     //OnClick関数(Unity側呼び出し)
     public void OnClick(){
         if(battlecard == true){
-            if(m_isSelect == false){
+            if(battlenumber <= 0){
                 GameMaster.Instance.battlecardList.Add(this);
-                m_isSelect = true;
+                battlenumber = GameMaster.Instance.battlecardList.Count;    //これいらないかも？
+                Debug.Log(battlenumber);    //
             }
             else{
                 GameMaster.Instance.battlecardList.Remove(this);
-                m_isSelect = false;
+                battlenumber = 0;   //
             }
         }
     }

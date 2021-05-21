@@ -13,9 +13,9 @@ public class Enemy : MonoBehaviour
     public Sprite icon;
 
 
-    public void OnDamage(int playerad)
+    public void OnDamage()
     {
-        enemyhp-= playerad;
+        enemyhp-= GameMaster.Instance.player.playerad;
         if(enemyhp <= 0){
             enemyhp = 0;
         }

@@ -4,10 +4,16 @@ using UnityEngine;
 
 public class AttackCardController : ICardController 
 {	
-    public override void Init(int characternanber){
-
+    private Player player = GameMaster.Instance.player;
+    private Enemy enemy = GameMaster.Instance.enemy;
+    public override void Init(int characternumber){
+		if(characternumber == (int)GameMaster.CharacterID.PLAYER){
+            player.OnDamage();
+        }else{
+            enemy.OnDamage();
+        }
     }
-    public override void Process(int characternanber)
+    public override void Process(int characternumber)
 	{
 		Debug.Log("こうげき！！\n");
         //if(characternanber == GameMaster.CharacterID.PLAYER){

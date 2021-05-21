@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class EnemyCard : MonoBehaviour
 {
     private Image m_Image;
+    public int cardSpeed = 1;
     public enum enemycardID{
         SLASH,
         GUARD,
