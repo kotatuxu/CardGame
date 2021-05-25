@@ -12,6 +12,15 @@ public class GameMaster : MonoBehaviour {
         return instance;
         }
     }
+    private static CardFactryCaseBattle CFCB;
+    public static CardFactryCaseBattle getcardfactry{  
+        get{
+        if(CFCB == null){
+            CFCB = new CardFactryCaseBattle();
+        }
+        return CFCB;
+        }
+    }
     public Player player;      
     public Deck deck;           
     public DeckCardList deckcardlist;   //デッキのカード（表示のみ
@@ -124,11 +133,9 @@ public class GameMaster : MonoBehaviour {
         Card _enemycard = EnemybattlecardList[turn];
         _enemycard.CardDisplay();
         if(_card.cardSpeed < _enemycard.cardSpeed){     //0が速い 3が遅い
-            Debug.Log("プレイヤーのターンから");
             _card.icardcon.Process();
             _enemycard.icardcon.Process();
         }else{
-            Debug.Log("エネミーから");
             _enemycard.icardcon.Process();
             _card.icardcon.Process();
         }
@@ -136,14 +143,17 @@ public class GameMaster : MonoBehaviour {
         player.OnDamage();
         enemy.OnDamage();
         graveyard.Add(_card);   //バトル終わったカードを墓地に送る
-        //hand.Pull(_card.battlenumber);      //これだとbattlenumberの１とHandのリストの１が違う。。
-                                                //バトルナンバーはクリックされた順番。ハンドのリストはハンドにカードが入れられた時の順番。
-                                                //ほしいのはバトルするカードがハンドのリストの何番目に入ってるか。
-                                                //別解、ハンドリストをバトルナンバー順にソートする。ことができれば。。
-                                                
         enemygraveyard.Add(_enemycard);
-        //enemyhand.Pull(_enemycard.battlenumber);
-        Debug.Log(turn);
+        //カードの添え字検索
+        _card.DataClear();
+        int arrayNO = hand.cardList.FindIndex(c => c.battlenumber == _card.battlenumber);
+        Card it = hand.Pull(arrayNO);
+        Debug.Log(arrayNO);
+        _enemycard.E_DataClear();
+        arrayNO = enemyhand.enemycardList.FindIndex(c => c.battlenumber == _enemycard.battlenumber);
+        it = enemyhand.Pull(arrayNO);
+        Debug.Log(arrayNO);
+        Debug.Log(turn + "経過");
     }
 
     phase = Phase.END;
@@ -152,7 +162,7 @@ public class GameMaster : MonoBehaviour {
         EnemybattlecardList.Clear();
         battlecardList.Clear();
         Debug.Log("EndPhase");
-        if(enemydeck.enemycardList.Count == 0){
+        if(enemydeck.enemycardList.Count == 0){     //墓地から手札へ
             for(int i = 0; i<10; i++){
                 Card _enemycard = enemygraveyard.cardList[0];
                 enemydeck.Add(_enemycard);

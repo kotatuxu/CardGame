@@ -461,8 +461,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd42a6cee29863f45930ec368550c804, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  def: 1
-  dodge: 0
   maxplayerhp: 0
   playerhp: 0
   playerad: 0
@@ -1560,7 +1558,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4d3aa867edf0d14e9871ff820749bb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentDef: 0
   maxenemyhp: 0
   finaldm: 0
   enemyhp: 0
@@ -1746,7 +1743,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1407222297
 Transform:
   m_ObjectHideFlags: 0
@@ -1821,11 +1818,11 @@ MonoBehaviour:
   deck: {fileID: 1073098042}
   deckcardlist: {fileID: 452826375}
   hand: {fileID: 1821276048}
-  graveyard: {fileID: 0}
+  graveyard: {fileID: 1407222298}
   enemy: {fileID: 1118035414}
   enemydeck: {fileID: 126235383}
   enemyhand: {fileID: 170751122}
-  enemygraveyard: {fileID: 0}
+  enemygraveyard: {fileID: 1893435035}
   setbutton: {fileID: 511771711}
   cardPrefab: {fileID: 8850611315081207355, guid: 5a3b8abd7485c3949b41148ec3fd9a41, type: 3}
   battlecardList: []

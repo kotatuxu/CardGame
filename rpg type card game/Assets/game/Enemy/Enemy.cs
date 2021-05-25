@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public int CurrentDef = 0;
     public int maxenemyhp;
     public float finaldm;
     public int enemyhp;

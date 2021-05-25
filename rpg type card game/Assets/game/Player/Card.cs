@@ -7,7 +7,6 @@ public class Card : MonoBehaviour
 {
     //cardID
     public ICardController icardcon;
-    private CardFactryCaseBattle factry;
     private Image m_Image;
     private Sprite m_sprite;
     private bool battlecard;
@@ -35,24 +34,36 @@ public class Card : MonoBehaviour
         cardSpeed = m_cardEntity.cardSpeed;
         battlecard = isbattle;
         //todo..デッキの紹介文を追加する場合はファクトリーを変える処理を追加する
-        factry = new CardFactryCaseBattle();
-        icardcon = factry.CreateCard(ID);   //IDはゲームマスターのRandom.Range
+        CardFactryCaseBattle factry = GameMaster.getcardfactry;
+        icardcon = GameMaster.getcardfactry.CreateCard(ID);   //IDはゲームマスターのRandom.Range
+        Debug.Log("初期化");
     }
     //OnClick関数(Unity側呼び出し)
     public void OnClick(){
-        if(battlecard == true){
-            if(battlenumber <= 0){
+        if(battlecard == true){     //選択できるカードか
+            if(battlenumber == 0){      
                 GameMaster.Instance.battlecardList.Add(this);
                 battlenumber = GameMaster.Instance.battlecardList.Count;    
                 Debug.Log(battlenumber);    
             }
             else{
                 GameMaster.Instance.battlecardList.Remove(this);
+                Debug.Log("test" + battlenumber);
                 battlenumber = 0;   
+                Debug.Log("合計選択数" + GameMaster.Instance.battlecardList.Count);
+                Debug.Log("自分の番号" + battlenumber);
             }
         }
     }
     //表にする
+    public void DataClear(){
+        battlenumber = 0;
+    }
+    public void E_DataClear(){
+        battlenumber = 0;
+        m_Image = GetComponent<Image>();    //ImageつかねーからGetしたぜ
+        m_Image.sprite = null;
+    }
     public void CardDisplay(){
         m_Image = GetComponent<Image>();    //ImageつかねーからGetしたぜ
         m_Image.sprite = m_sprite;

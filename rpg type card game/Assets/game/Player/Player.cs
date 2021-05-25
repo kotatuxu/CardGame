@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-    public int def = 1;
-    public bool dodge = false;
     public int maxplayerhp;
     public int playerhp;
     public int playerad;    //基礎攻撃力
