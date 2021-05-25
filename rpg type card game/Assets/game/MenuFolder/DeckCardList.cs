@@ -10,7 +10,7 @@ public class DeckCardList : MonoBehaviour
         public void Create(int cardID){
             Card card = Instantiate(GameMaster.Instance.cardPrefab,deckcardlistTransform,false);
             //cardをInitしてcardIDとbattlecardをfalseにする
-            card.Init(cardID,false);
+            card.Init(cardID,false,true);
         cardList.Add(card);
     }
     public void DeckOpen(){

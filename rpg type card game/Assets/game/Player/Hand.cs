@@ -9,9 +9,9 @@ public class Hand : MonoBehaviour {
         _card.transform.SetParent(this.transform);
         cardList.Add(_card);
     }
-    public Card Pull(int _position){
-        Card card = cardList[_position];
-        cardList.Remove(card);
+    public Card Pull(int _position){        
+        Card card = cardList[_position];    //_positionの数の場所をカードをcardとする
+        cardList.Remove(card);              //そのcardをcardListから削除する
         return card;
     }    
 }

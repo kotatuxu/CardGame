@@ -10,4 +10,5 @@ public class EnemyCardEntity : ScriptableObject
     public int number;
     public int type;
     public Sprite icon;
+    public int cardSpeed;
 }

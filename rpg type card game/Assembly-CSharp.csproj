@@ -60,31 +60,34 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Assets\game\Player\Hand.cs" />
-    <Compile Include="Assets\game\Enemy\EnemyCard.cs" />
+    <Compile Include="Assets\game\CardController\E_MagicCardController.cs" />
     <Compile Include="Assets\game\MenuFolder\DeckCardList.cs" />
     <Compile Include="Assets\game\MenuFolder\Menu.cs" />
     <Compile Include="Assets\game\Enemy\EnemyDeck.cs" />
     <Compile Include="Assets\game\Resources\Entity\EnemyEntity.cs" />
+    <Compile Include="Assets\game\CardController\AttackCardController.cs" />
     <Compile Include="Assets\game\Player\Card.cs" />
     <Compile Include="Assets\game\Player\SetButton.cs" />
+    <Compile Include="Assets\game\CardController\DodgeCardController.cs" />
     <Compile Include="Assets\game\Resources\Entity\EnemyCardEntity.cs" />
     <Compile Include="Assets\game\Enemy\Enemy.cs" />
+    <Compile Include="Assets\game\CardFactryCaseBattle.cs" />
+    <Compile Include="Assets\game\CardController\E_DefenseCardController.cs" />
     <Compile Include="Assets\game\ICardController.cs" />
     <Compile Include="Assets\game\GameMaster.cs" />
     <Compile Include="Assets\game\MenuFolder\DeckButton.cs" />
     <Compile Include="Assets\game\Player\Graveyard.cs" />
     <Compile Include="Assets\game\Resources\Entity\CardEntity.cs" />
     <Compile Include="Assets\game\Enemy\EnemyHpText.cs" />
+    <Compile Include="Assets\game\CardController\DefenseCardController.cs" />
     <Compile Include="Assets\game\Player\Hp.cs" />
     <Compile Include="Assets\game\MenuFolder\DeckEscapeButton.cs" />
     <Compile Include="Assets\game\MenuFolder\MenuButton.cs" />
     <Compile Include="Assets\game\Player\Player.cs" />
+    <Compile Include="Assets\game\CardController\E_AttackCardController.cs" />
     <Compile Include="Assets\game\Player\Deck.cs" />
     <Compile Include="Assets\game\Enemy\EnemyHand.cs" />
-    <Compile Include="Assets\game\AttackCardController.cs" />
-    <Compile Include="Assets\game\DefenseCardController.cs" />
-    <Compile Include="Assets\game\CardFactryCaseBattle.cs" />
-    <Compile Include="Assets\game\DodgeCardController.cs" />
+    <Compile Include="Assets\game\Enemy\EnemyGraveyard.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

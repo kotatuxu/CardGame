@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class EnemyHand : MonoBehaviour
 {
-    public List<EnemyCard> enemycardList = new List<EnemyCard>();
+    public List<Card> enemycardList = new List<Card>();
 
-        public void Add(EnemyCard _enemycard){
+        public void Add(Card _enemycard){
             Debug.Log(_enemycard);
         _enemycard.transform.SetParent(this.transform);
         enemycardList.Add(_enemycard);
     }
-        public EnemyCard Pull(int _position){
-        EnemyCard enemycard = enemycardList[_position];
+        public Card Pull(int _position){
+        Card enemycard = enemycardList[_position];
         enemycardList.Remove(enemycard);
         return enemycard;
     }

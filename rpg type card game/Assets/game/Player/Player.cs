@@ -8,9 +8,9 @@ public class Player : MonoBehaviour
     public int def = 1;
     public bool dodge = false;
     public int maxplayerhp;
-    public int playerdef;
     public int playerhp;
-    public int playerad;
+    public int playerad;    //基礎攻撃力
+    public float finaldm;     //最終算出ダメージ
     public GameMaster gamemaster;
     public Sprite icon;
     public Text text;
@@ -18,21 +18,12 @@ public class Player : MonoBehaviour
 
     public void Init(){
         maxplayerhp = 100;     //とりあえずの初期設定
+        playerad = 10;
         playerhp = maxplayerhp;     //maxhpから始まるだけ
         hp.HpText(maxplayerhp,playerhp);    //初期hpを添えるだけ
     }
-    public void OnDamage()
-    {
-        
-        if(dodge == true){
-            Debug.Log("回避");
-        }else{
-            playerhp -= GameMaster.Instance.enemy.enemyad / def;
-            if(playerhp <= 0){
-                playerhp = 0;
-            }
-        }
+    public void OnDamage(){
+        playerhp -= (int)finaldm;
         hp.HpText(maxplayerhp,playerhp);    //ダメージ後の体力調整
     }
-
 }

@@ -149,7 +149,7 @@ RectTransform:
   m_GameObject: {fileID: 126235381}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.7, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 1118035411}
   m_RootOrder: 3
@@ -224,12 +224,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 20
+    m_Left: 30
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 4
-  m_Spacing: 20
+  m_Spacing: 30
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 0
@@ -402,6 +402,7 @@ RectTransform:
   - {fileID: 1669519092}
   - {fileID: 511771710}
   - {fileID: 1528656598}
+  - {fileID: 1407222297}
   m_Father: {fileID: 938160694}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -460,9 +461,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd42a6cee29863f45930ec368550c804, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  def: 1
+  dodge: 0
   maxplayerhp: 0
   playerhp: 0
   playerad: 0
+  finaldm: 0
   gamemaster: {fileID: 1488187412}
   icon: {fileID: 0}
   text: {fileID: 1669519093}
@@ -1497,6 +1501,7 @@ RectTransform:
   - {fileID: 499485338}
   - {fileID: 170751118}
   - {fileID: 126235382}
+  - {fileID: 1893435034}
   m_Father: {fileID: 938160694}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1555,11 +1560,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4d3aa867edf0d14e9871ff820749bb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CurrentDef: 0
   maxenemyhp: 0
+  finaldm: 0
   enemyhp: 0
   enemyad: 0
   enemyap: 0
-  enemyhptext: {fileID: 0}
+  enemyhptext: {fileID: 499485341}
   icon: {fileID: 0}
 --- !u!1 &1162473595
 GameObject:
@@ -1732,6 +1739,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1407222297}
+  - component: {fileID: 1407222298}
   m_Layer: 0
   m_Name: Graveyard
   m_TagString: Untagged
@@ -1746,13 +1754,26 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1407222296}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 842.8353, y: 582.05505, z: -194.22171}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 382.83533, y: -70.94495, z: -194.22171}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_Father: {fileID: 264348070}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1407222298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1407222296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb78e00a4b4c31945b03038eedbdb0bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardList: []
 --- !u!1 &1488187410
 GameObject:
   m_ObjectHideFlags: 0
@@ -1800,13 +1821,16 @@ MonoBehaviour:
   deck: {fileID: 1073098042}
   deckcardlist: {fileID: 452826375}
   hand: {fileID: 1821276048}
+  graveyard: {fileID: 0}
   enemy: {fileID: 1118035414}
   enemydeck: {fileID: 126235383}
   enemyhand: {fileID: 170751122}
+  enemygraveyard: {fileID: 0}
   setbutton: {fileID: 511771711}
   cardPrefab: {fileID: 8850611315081207355, guid: 5a3b8abd7485c3949b41148ec3fd9a41, type: 3}
-  enemycardPrefab: {fileID: 225850571967423176, guid: 24e05d5d393852b4fa1dd427ed6dda98, type: 3}
   battlecardList: []
+  EnemybattlecardList: []
+  turn: 0
   playerDeckTransform: {fileID: 1073098041}
   playerHandTransform: {fileID: 1821276044}
   enemyDeckTransform: {fileID: 126235382}
@@ -2254,6 +2278,55 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7c115b10657533c46a1bfd8cfb9b5f1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardList: []
+--- !u!1 &1893435033
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1893435034}
+  - component: {fileID: 1893435035}
+  m_Layer: 5
+  m_Name: EnemyGraveyard
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1893435034
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1893435033}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1118035411}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1893435035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1893435033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94ac0043484f55448bc2677b82f16202, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   cardList: []

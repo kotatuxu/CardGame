@@ -4,6 +4,6 @@ using UnityEngine;
 //
 public abstract class ICardController 
 {
-    public abstract void Init(int characternanber);
-    public abstract void Process(int Characternanber);
+    public abstract void Init();
+    public abstract void Process();
 }
