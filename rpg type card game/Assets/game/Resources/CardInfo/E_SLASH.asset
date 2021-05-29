@@ -15,5 +15,5 @@ MonoBehaviour:
   name: E_SLASH
   number: 4
   type: 0
-  icon: {fileID: 21300000, guid: 9cde694e69b670940a4e414526fd7bc7, type: 3}
+  icon: {fileID: 21300000, guid: 4115c3dedd60b234383083d98fc2e230, type: 3}
   cardSpeed: 1

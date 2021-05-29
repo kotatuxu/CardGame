@@ -10,7 +10,7 @@ public class E_MagicCardController : ICardController
     }
     public override void Process()
 	{
-		Debug.Log("マジック！！\n");
-        player.finaldm = enemy.enemyad;
+		Debug.Log("E_マジック！！\n");
+        player.finaldm = enemy.enemyap;
     }
 }

@@ -48,6 +48,7 @@ public class GameMaster : MonoBehaviour {
         E_SLASH,
         E_GUARD,
         E_MAGIC,
+        E_CONFUSED,
         CardCount,   //カードの種類の最大値
     };
     enum Phase{
@@ -83,7 +84,8 @@ public class GameMaster : MonoBehaviour {
     void InitPhase(){   //生成フェーズ
         Debug.Log("InitPhase");
         player.Init();
-        enemy.Init();
+        int enemyID = Random.Range(0,2);
+        enemy.Init(enemyID);
         
         for(int i = 0; i < 10; i++){    //プレイヤーのカード生成
             Card card = Instantiate(cardPrefab,playerDeckTransform,false);  //カードの生成（カードプレハブをプレイヤーデッキへ。座標０）
@@ -95,7 +97,7 @@ public class GameMaster : MonoBehaviour {
         for(int i = 0; i < 10; i++){    //エネミーのカード生成
             Card enemycard = Instantiate(cardPrefab,enemyDeckTransform,false);
             int cardID = Random.Range((int)CardID.E_SLASH,(int)CardID.CardCount);
-            Debug.Log(cardID);
+            //Debug.Log(cardID);
             enemycard.Init(cardID,false,false);
             enemydeck.Add(enemycard);
         }
@@ -116,6 +118,10 @@ public class GameMaster : MonoBehaviour {
         phase = Phase.SELECT;
     }
     public void SelectPhase(){      //セレクトフェーズ
+        for(int i = 0; i < player.gaze; i++){       //敵のセレクトカードをgaze分見れる
+        Card _card = enemyhand.enemycardList[i];
+        _card.CardDisplay();
+        }
         //Debug.Log(battlecardList.Count);
         if(battlecardList.Count == 5){      //battlecardListはカード選択時＋１するよ
             setbutton.SetIventButton();     //battlecardListが５ならセットボタンを生成する
@@ -133,27 +139,33 @@ public class GameMaster : MonoBehaviour {
         Card _enemycard = EnemybattlecardList[turn];
         _enemycard.CardDisplay();
         if(_card.cardSpeed < _enemycard.cardSpeed){     //0が速い 3が遅い
+            Debug.Log("プレイヤー先行");
             _card.icardcon.Process();
             _enemycard.icardcon.Process();
         }else{
+            Debug.Log("エネミー先行");
             _enemycard.icardcon.Process();
             _card.icardcon.Process();
         }
         Debug.Log("ダメージ処理");
-        player.OnDamage();
+        Debug.Log("エネミーに" + enemy.finaldm +"ダメージ！！");
         enemy.OnDamage();
+        Debug.Log("プレイヤーに" + player.finaldm + "ダメージ！！");
+        player.OnDamage();
+        player.turn();
         graveyard.Add(_card);   //バトル終わったカードを墓地に送る
+        enemy.turn();
         enemygraveyard.Add(_enemycard);
         //カードの添え字検索
         _card.DataClear();
         int arrayNO = hand.cardList.FindIndex(c => c.battlenumber == _card.battlenumber);
         Card it = hand.Pull(arrayNO);
-        Debug.Log(arrayNO);
+        //Debug.Log(arrayNO);
         _enemycard.E_DataClear();
         arrayNO = enemyhand.enemycardList.FindIndex(c => c.battlenumber == _enemycard.battlenumber);
         it = enemyhand.Pull(arrayNO);
-        Debug.Log(arrayNO);
-        Debug.Log(turn + "経過");
+        //Debug.Log(arrayNO);
+        //Debug.Log(turn + "経過");
     }
 
     phase = Phase.END;
@@ -162,6 +174,8 @@ public class GameMaster : MonoBehaviour {
         EnemybattlecardList.Clear();
         battlecardList.Clear();
         Debug.Log("EndPhase");
+        player.Phase();
+        enemy.Phase();
         if(enemydeck.enemycardList.Count == 0){     //墓地から手札へ
             for(int i = 0; i<10; i++){
                 Card _enemycard = enemygraveyard.cardList[0];

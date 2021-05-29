@@ -461,14 +461,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd42a6cee29863f45930ec368550c804, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxplayerhp: 0
-  playerhp: 0
-  playerad: 0
-  finaldm: 0
   gamemaster: {fileID: 1488187412}
   icon: {fileID: 0}
   text: {fileID: 1669519093}
   hp: {fileID: 1669519095}
+  maxplayerhp: 0
+  playerhp: 0
+  playerct: 0
+  playerad: 0
+  finaldm: 0
+  dodgestatus: 0
+  gaze: 0
 --- !u!1 &381305456
 GameObject:
   m_ObjectHideFlags: 0
@@ -2294,7 +2297,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1893435034
 RectTransform:
   m_ObjectHideFlags: 0

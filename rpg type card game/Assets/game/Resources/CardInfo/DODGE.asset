@@ -13,7 +13,5 @@ MonoBehaviour:
   m_Name: DODGE
   m_EditorClassIdentifier: 
   name: DODGE
-  number: 0
-  type: 2
   icon: {fileID: 21300000, guid: be8e7b23d54ee7e458fdf237e33320ca, type: 3}
   cardSpeed: 2

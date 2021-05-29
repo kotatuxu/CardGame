@@ -66,10 +66,11 @@
     <Compile Include="Assets\game\Enemy\EnemyDeck.cs" />
     <Compile Include="Assets\game\Resources\Entity\EnemyEntity.cs" />
     <Compile Include="Assets\game\CardController\AttackCardController.cs" />
+    <Compile Include="Assets\game\Enemy\EnemyGraveyard.cs" />
+    <Compile Include="Assets\game\CardController\E_CONFUSEDCardController.cs" />
     <Compile Include="Assets\game\Player\Card.cs" />
     <Compile Include="Assets\game\Player\SetButton.cs" />
     <Compile Include="Assets\game\CardController\DodgeCardController.cs" />
-    <Compile Include="Assets\game\Resources\Entity\EnemyCardEntity.cs" />
     <Compile Include="Assets\game\Enemy\Enemy.cs" />
     <Compile Include="Assets\game\CardFactryCaseBattle.cs" />
     <Compile Include="Assets\game\CardController\E_DefenseCardController.cs" />
@@ -87,7 +88,6 @@
     <Compile Include="Assets\game\CardController\E_AttackCardController.cs" />
     <Compile Include="Assets\game\Player\Deck.cs" />
     <Compile Include="Assets\game\Enemy\EnemyHand.cs" />
-    <Compile Include="Assets\game\Enemy\EnemyGraveyard.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

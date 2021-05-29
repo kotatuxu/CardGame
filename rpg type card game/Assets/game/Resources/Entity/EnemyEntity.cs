@@ -1,18 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class EnemyEntity : MonoBehaviour
+[CreateAssetMenu(fileName ="EnemyEntity", menuName ="Create EnemyEntity")]
+public class EnemyEntity : ScriptableObject
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public string name;
+    public int maxenemyhp;
+    public int enemyad;
+    public float getenemycd;
+    public int enemyap;
+    public Sprite icon;
 }

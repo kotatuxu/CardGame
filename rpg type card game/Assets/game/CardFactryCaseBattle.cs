@@ -28,6 +28,10 @@ public class CardFactryCaseBattle : MonoBehaviour
         else if(_cardID == (int)GameMaster.CardID.E_MAGIC){
             ICardController RetCard = new E_MagicCardController();
             return RetCard;
+        }
+        else if(_cardID == (int)GameMaster.CardID.E_CONFUSED){
+            ICardController RetCard = new E_ConfusedCardController();
+            return RetCard;
         }else{
             Debug.Log("エラー");
             return null;

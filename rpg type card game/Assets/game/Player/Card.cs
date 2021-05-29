@@ -19,7 +19,8 @@ public class Card : MonoBehaviour
         "DODGE",
         "E_SLASH",
         "E_GUARD",
-        "E_MAGIC"
+        "E_MAGIC",
+        "E_FRIGHTENED"
     };
     private bool m_isSelect = false;    //選択されてる？
     //初期化関数

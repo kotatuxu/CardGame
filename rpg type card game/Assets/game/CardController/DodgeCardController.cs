@@ -10,6 +10,11 @@ public class DodgeCardController : ICardController
     }
     public override void Process()
 	{
+        Debug.Log("回避！！");
+        if(player.finaldm != 0){
+            Debug.Log("回避成功！！");
+            player.dodgestatus = 2;
+        }
         player.finaldm = 0;
     }
 }

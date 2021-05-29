@@ -10,7 +10,7 @@ public class E_AttackCardController : ICardController
     }
     public override void Process()
 	{
-		Debug.Log("攻撃！！\n");
+		Debug.Log("E_攻撃！！\n");
         player.finaldm = enemy.enemyad;
     }
 }

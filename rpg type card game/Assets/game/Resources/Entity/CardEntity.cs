@@ -7,8 +7,6 @@ using UnityEngine.UI;
 public class CardEntity : ScriptableObject
 {
     public string name;
-    public int number;
-    public int type;
     public Sprite icon;
     public int cardSpeed;
 }

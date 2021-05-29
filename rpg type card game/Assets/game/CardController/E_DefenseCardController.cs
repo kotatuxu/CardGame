@@ -10,6 +10,7 @@ public class E_DefenseCardController : ICardController
     }
     public override void Process()
 	{
+        Debug.Log("E_防御！！");
         enemy.finaldm *= 0.2f;
 		enemy.finaldm = Mathf.Ceil(enemy.finaldm);
     }

@@ -15,5 +15,5 @@ MonoBehaviour:
   name: E_MAGIC
   number: 6
   type: 0
-  icon: {fileID: 21300000, guid: be8e7b23d54ee7e458fdf237e33320ca, type: 3}
+  icon: {fileID: 21300000, guid: 0280ab936007c094eb74f99e151cd20b, type: 3}
   cardSpeed: 3

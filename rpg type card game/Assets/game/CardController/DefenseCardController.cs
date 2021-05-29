@@ -10,6 +10,7 @@ public class DefenseCardController : ICardController
     }
 	public override void Process()
 	{
+		Debug.Log("防御！！");
         player.finaldm *= 0.2f;
 		player.finaldm = Mathf.Ceil(player.finaldm);
 	}
