@@ -20,7 +20,7 @@ public class Card : MonoBehaviour
         "E_SLASH",
         "E_GUARD",
         "E_MAGIC",
-        "E_FRIGHTENED"
+        "E_CONFUSED"
     };
     private bool m_isSelect = false;    //選択されてる？
     //初期化関数
@@ -49,7 +49,7 @@ public class Card : MonoBehaviour
             }
             else{
                 GameMaster.Instance.battlecardList.Remove(this);
-                Debug.Log("test" + battlenumber);
+                Debug.Log("バトルナンバー" + battlenumber);
                 battlenumber = 0;   
                 Debug.Log("合計選択数" + GameMaster.Instance.battlecardList.Count);
                 Debug.Log("自分の番号" + battlenumber);
