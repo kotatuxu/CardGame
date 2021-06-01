@@ -59,35 +59,38 @@
     <UnityVersion>2020.1.6f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Assets\game\Player\Hand.cs" />
-    <Compile Include="Assets\game\CardController\E_MagicCardController.cs" />
-    <Compile Include="Assets\game\MenuFolder\DeckCardList.cs" />
-    <Compile Include="Assets\game\MenuFolder\Menu.cs" />
-    <Compile Include="Assets\game\Enemy\EnemyDeck.cs" />
-    <Compile Include="Assets\game\Resources\Entity\EnemyEntity.cs" />
-    <Compile Include="Assets\game\CardController\AttackCardController.cs" />
-    <Compile Include="Assets\game\Enemy\EnemyGraveyard.cs" />
-    <Compile Include="Assets\game\CardController\E_CONFUSEDCardController.cs" />
-    <Compile Include="Assets\game\Player\Card.cs" />
-    <Compile Include="Assets\game\Player\SetButton.cs" />
-    <Compile Include="Assets\game\CardController\DodgeCardController.cs" />
-    <Compile Include="Assets\game\Enemy\Enemy.cs" />
-    <Compile Include="Assets\game\CardFactryCaseBattle.cs" />
-    <Compile Include="Assets\game\CardController\E_DefenseCardController.cs" />
-    <Compile Include="Assets\game\ICardController.cs" />
-    <Compile Include="Assets\game\GameMaster.cs" />
-    <Compile Include="Assets\game\MenuFolder\DeckButton.cs" />
-    <Compile Include="Assets\game\Player\Graveyard.cs" />
-    <Compile Include="Assets\game\Resources\Entity\CardEntity.cs" />
-    <Compile Include="Assets\game\Enemy\EnemyHpText.cs" />
-    <Compile Include="Assets\game\CardController\DefenseCardController.cs" />
-    <Compile Include="Assets\game\Player\Hp.cs" />
-    <Compile Include="Assets\game\MenuFolder\DeckEscapeButton.cs" />
-    <Compile Include="Assets\game\MenuFolder\MenuButton.cs" />
-    <Compile Include="Assets\game\Player\Player.cs" />
-    <Compile Include="Assets\game\CardController\E_AttackCardController.cs" />
-    <Compile Include="Assets\game\Player\Deck.cs" />
-    <Compile Include="Assets\game\Enemy\EnemyHand.cs" />
+    <Compile Include="Assets\Battle\Player\Hand.cs" />
+    <Compile Include="Assets\Battle\CardController\E_MagicCardController.cs" />
+    <Compile Include="Assets\Battle\MenuFolder\DeckCardList.cs" />
+    <Compile Include="Assets\Battle\MenuFolder\Menu.cs" />
+    <Compile Include="Assets\Battle\Enemy\EnemyDeck.cs" />
+    <Compile Include="Assets\Battle\Resources\Entity\EnemyEntity.cs" />
+    <Compile Include="Assets\Battle\CardController\AttackCardController.cs" />
+    <Compile Include="Assets\Battle\Enemy\EnemyGraveyard.cs" />
+    <Compile Include="Assets\Battle\CardController\E_ConfusedCardController.cs" />
+    <Compile Include="Assets\Battle\Player\Card.cs" />
+    <Compile Include="Assets\Battle\Player\SetButton.cs" />
+    <Compile Include="Assets\Battle\CardController\DodgeCardController.cs" />
+    <Compile Include="Assets\Battle\Enemy\Enemy.cs" />
+    <Compile Include="Assets\Battle\CardFactryCaseBattle.cs" />
+    <Compile Include="Assets\Battle\CardController\E_DefenseCardController.cs" />
+    <Compile Include="Assets\Battle\ICardController.cs" />
+    <Compile Include="Assets\Battle\GameMaster.cs" />
+    <Compile Include="Assets\Battle\MenuFolder\DeckButton.cs" />
+    <Compile Include="Assets\Battle\Player\Graveyard.cs" />
+    <Compile Include="Assets\Battle\Resources\Entity\CardEntity.cs" />
+    <Compile Include="Assets\Battle\Enemy\EnemyHpText.cs" />
+    <Compile Include="Assets\Battle\CardController\DefenseCardController.cs" />
+    <Compile Include="Assets\Battle\Player\Hp.cs" />
+    <Compile Include="Assets\Battle\MenuFolder\DeckEscapeButton.cs" />
+    <Compile Include="Assets\Battle\MenuFolder\MenuButton.cs" />
+    <Compile Include="Assets\Battle\Player\Player.cs" />
+    <Compile Include="Assets\Battle\CardController\E_AttackCardController.cs" />
+    <Compile Include="Assets\Battle\Player\Deck.cs" />
+    <Compile Include="Assets\Battle\Enemy\EnemyHand.cs" />
+    <Compile Include="Assets\Map\Stage.cs" />
+    <Compile Include="Assets\Battle\BattleScene.cs" />
+    <Compile Include="Assets\Map\MapPanel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
