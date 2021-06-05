@@ -60,6 +60,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Assets\Battle\Player\Hand.cs" />
+    <Compile Include="Assets\Battle\BattleScene.cs" />
+    <Compile Include="Assets\Map\MapPanel.cs" />
     <Compile Include="Assets\Battle\CardController\E_MagicCardController.cs" />
     <Compile Include="Assets\Battle\MenuFolder\DeckCardList.cs" />
     <Compile Include="Assets\Battle\MenuFolder\Menu.cs" />
@@ -75,6 +77,7 @@
     <Compile Include="Assets\Battle\CardFactryCaseBattle.cs" />
     <Compile Include="Assets\Battle\CardController\E_DefenseCardController.cs" />
     <Compile Include="Assets\Battle\ICardController.cs" />
+    <Compile Include="Assets\Map\Stage.cs" />
     <Compile Include="Assets\Battle\GameMaster.cs" />
     <Compile Include="Assets\Battle\MenuFolder\DeckButton.cs" />
     <Compile Include="Assets\Battle\Player\Graveyard.cs" />
@@ -88,9 +91,7 @@
     <Compile Include="Assets\Battle\CardController\E_AttackCardController.cs" />
     <Compile Include="Assets\Battle\Player\Deck.cs" />
     <Compile Include="Assets\Battle\Enemy\EnemyHand.cs" />
-    <Compile Include="Assets\Map\Stage.cs" />
-    <Compile Include="Assets\Battle\BattleScene.cs" />
-    <Compile Include="Assets\Map\MapPanel.cs" />
+    <Compile Include="Assets\Battle\NumberIcon.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
