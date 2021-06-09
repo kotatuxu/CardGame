@@ -8,8 +8,7 @@ public class BattleScene : MonoBehaviour
     public void BattleStart(){
         gameObject.SetActive(true);
     }
-    public void BattleEnd(){
+    public void EndBattle(){
         gameObject.SetActive(false);
-        mappanel.StageSelect();
     }
 }

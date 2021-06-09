@@ -32,6 +32,7 @@ public class GameMaster : MonoBehaviour {
     public EnemyGraveyard enemygraveyard;
     public SetButton setbutton;
     public Card cardPrefab;
+    public MapPanel mappanel;
     public BattleScene battlescene;
     public NumberIcon numbericon;
     public List<Card> battlecardList = new List<Card>();    //カードを選択した枚数
@@ -60,17 +61,21 @@ public class GameMaster : MonoBehaviour {
         CardCount,   //カードの種類の最大値
     };
     enum Phase{
+        LOBBY,
         STAGESELECT,
         INIT,
         DRAW,
         SELECT,
         BATTLE,
         END,
-        FINISH,
+        BATTLEEND,
     };
     Phase phase;
     void Update () {
         switch(phase){
+            case Phase.LOBBY:
+            Lobby();
+            break;
             case Phase.STAGESELECT:
             StageSelect();
             break;
@@ -89,13 +94,18 @@ public class GameMaster : MonoBehaviour {
             case Phase.END:
             EndPhase();
             break;
-            case Phase.FINISH:
-            Finish();
+            case Phase.BATTLEEND:
+            BattleEnd();
             break;
         }       
     }
+    void Lobby(){
+        Debug.Log("一応ロビーいったよ");
+        phase = Phase.STAGESELECT;
+    }
     void StageSelect(){
-        Debug.Log("SelectPhase");
+        mappanel.StageSelect();
+        Debug.Log("StageSelectPhase");
     }
     public void BattleStart(){      //セットボタンクリックされた
         phase = Phase.INIT;
@@ -133,6 +143,7 @@ public class GameMaster : MonoBehaviour {
             CardCount -= 1;     //Random.Rangeの最大値をデッキからカードを抜いた分引く（最大値の修正
             hand.Add(card);     //デッキのカードをハンドに渡す処理
             card.numbericon = Instantiate(numbericon,card.transform,false);
+            card.numbericon.NotActive();
             enemyhand.Add(enemycard);
         }
         phase = Phase.SELECT;
@@ -159,7 +170,8 @@ public class GameMaster : MonoBehaviour {
         phase = Phase.BATTLE;
     }
     void BattlePhase(){     //バトルフェーズ
-        Debug.Log("BattlePhase");
+    phase = Phase.END;
+    Debug.Log("BattlePhase");
     for(int turn = 0; turn < 5; turn++){
         Card _card = battlecardList[turn];     //バトルカードリストの０番目を_cardとする
         Card _enemycard = EnemybattlecardList[turn];
@@ -176,8 +188,19 @@ public class GameMaster : MonoBehaviour {
         Debug.Log("ダメージ処理");
         Debug.Log("エネミーに" + enemy.finaldm +"ダメージ！！");
         enemy.OnDamage();
+        if(enemy.enemyhp <= 0){
+            battlescene.EndBattle();
+            phase = Phase.BATTLEEND;
+            break;
+        }
         Debug.Log("プレイヤーに" + player.finaldm + "ダメージ！！");
         player.OnDamage();
+        if(player.playerhp <= 0){
+            Debug.Log("ゲーム終了");
+            battlescene.EndBattle();
+            phase = Phase.LOBBY;
+            break;
+        }
         player.turn();
         graveyard.Add(_card);   //バトル終わったカードを墓地に送る
         enemy.turn();
@@ -192,9 +215,8 @@ public class GameMaster : MonoBehaviour {
         it = enemyhand.Pull(arrayNO);
         //Debug.Log(arrayNO);
         //Debug.Log(turn + "経過");
-    }
-
-    phase = Phase.END;
+        }
+ 
     }
     void EndPhase(){
         EnemybattlecardList.Clear();
@@ -212,18 +234,32 @@ public class GameMaster : MonoBehaviour {
         if(deck.cardList.Count == 0){
             for(int i = 0; i < 10 ; i++){
             Card _card = graveyard.cardList[0];
+            _card.numbericon.NotActive();
             deck.Add(_card);
             graveyard.Pull(0);
             }
         }
         phase = Phase.DRAW;
     }
-    public void EndBattle(){
-        phase = Phase.STAGESELECT;
-        battlescene.BattleEnd();
-    }
-    void Finish(){
-        Debug.Log("ゲーム終了");
-        phase = Phase.STAGESELECT;
+    void BattleEnd(){
+        Debug.Log("バトルエンド");
+        for(int i = 0; i < hand.cardList.Count; i++){
+            Card _card = hand.cardList[i];
+            Destroy(_card.gameObject);
+        }
+        for(int i = 0; i < deck.cardList.Count; i++){
+            Card _card = deck.cardList[i];
+            Destroy(_card.gameObject);
+        }
+        for(int i = 0; i < graveyard.cardList.Count; i++){
+            Card _card = graveyard.cardList[i];
+            Destroy(_card.gameObject);
+        }
+        
+        hand.cardList.Clear();
+        EnemybattlecardList.Clear();
+        battlecardList.Clear();
+        deck.cardList.Clear();
+        graveyard.cardList.Clear();
     }
 }

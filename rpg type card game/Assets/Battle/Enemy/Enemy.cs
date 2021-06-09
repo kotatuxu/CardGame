@@ -18,7 +18,7 @@ public class Enemy : MonoBehaviour
     private string[] m_enemyname = new string[]{
         "gomi1",
         "test1",
-        "test2 adc",
+        "test2_adc",
         "enemyCount"
     };
 
@@ -39,6 +39,7 @@ public class Enemy : MonoBehaviour
         enemyhp -= (int)finaldm;
         enemyhptext.E_HpText(maxenemyhp,enemyhp);    //ダメージ後の体力調整
         finaldm = 0;
+
     }
     public void turn(){
 

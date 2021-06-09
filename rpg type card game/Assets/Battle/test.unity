@@ -1881,6 +1881,7 @@ MonoBehaviour:
   enemygraveyard: {fileID: 1893435035}
   setbutton: {fileID: 511771711}
   cardPrefab: {fileID: 8850611315081207355, guid: 5a3b8abd7485c3949b41148ec3fd9a41, type: 3}
+  mappanel: {fileID: 1579169167}
   battlescene: {fileID: 169417672}
   numbericon: {fileID: 8176378932276044015, guid: 02b8142c7a1f7fd4c96bdfb75f391da2, type: 3}
   battlecardList: []
