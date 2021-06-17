@@ -17,4 +17,4 @@ MonoBehaviour:
   enemyad: 10
   getenemycd: 1.5
   enemyap: 10
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: ba25cffec25674b4d824a061bde23b5b, type: 3}

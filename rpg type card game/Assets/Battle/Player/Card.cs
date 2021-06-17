@@ -10,6 +10,7 @@ public class Card : MonoBehaviour
     [SerializeField] Transform transform;
     private Image m_Image;
     private Sprite m_sprite;
+    public int cardID;
     private bool battlecard;
     private CardEntity m_cardEntity;
     public NumberIcon numbericon;
@@ -34,6 +35,7 @@ public class Card : MonoBehaviour
             CardDisplay();
         }
         //Debug.Log("このカードの名前は"+m_cardEntity.name);
+        cardID = m_cardEntity.ID;
         cardSpeed = m_cardEntity.cardSpeed;
         battlecard = isbattle;
         //todo..デッキの紹介文を追加する場合はファクトリーを変える処理を追加する

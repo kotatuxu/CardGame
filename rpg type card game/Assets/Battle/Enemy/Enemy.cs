@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
+    public EnemyHand enemyhand;
+    public EnemyDeck enemydeck;
+    public EnemyGraveyard enemygraveyard;
     public int maxenemyhp;
     public float finaldm;
     public int enemyhp;
@@ -14,7 +17,9 @@ public class Enemy : MonoBehaviour
     public int enemyap;
     public EnemyHpText enemyhptext;
     private EnemyEntity m_enemyEntity;
-    public Sprite icon;
+    public Transform enemyDeckTransform;
+    private Image m_Image;
+    public Sprite m_sprite;
     private string[] m_enemyname = new string[]{
         "gomi1",
         "test1",
@@ -27,11 +32,13 @@ public class Enemy : MonoBehaviour
     name = m_enemyEntity.name;   //これでロード完了
     enemyad = m_enemyEntity.enemyad;
     enemyap = m_enemyEntity.enemyap;
-    icon = m_enemyEntity.icon;
+    m_sprite = m_enemyEntity.icon;
     maxenemyhp = m_enemyEntity.maxenemyhp;
     getenemycd = m_enemyEntity.getenemycd;      //弱点の弱さ
     enemyhp = maxenemyhp;
     enemyhptext.E_HpText(maxenemyhp,enemyhp);
+    m_Image = GetComponent<Image>();    //ImageつかねーからGetしたぜ
+    m_Image.sprite = m_sprite;
     }
 
     public void OnDamage()

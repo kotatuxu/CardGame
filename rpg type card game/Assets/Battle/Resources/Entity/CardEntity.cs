@@ -9,4 +9,5 @@ public class CardEntity : ScriptableObject
     public string name;
     public Sprite icon;
     public int cardSpeed;
+    public int ID;
 }

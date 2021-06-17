@@ -15,3 +15,4 @@ MonoBehaviour:
   name: E_CONFUSED
   icon: {fileID: 21300000, guid: 27945541bd124094db7a21d5b613e79b, type: 3}
   cardSpeed: 0
+  ID: 6

@@ -15,6 +15,6 @@ MonoBehaviour:
   name: test2_adc
   maxenemyhp: 75
   enemyad: 15
-  getenemycd: 2
+  getenemycd: 1.5
   enemyap: 5
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 548211525659d3b4fbd96e38c0ae0a62, type: 3}

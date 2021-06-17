@@ -10,6 +10,7 @@ public class AttackCardController : ICardController
     }
     public override void Process()
 	{
+        //ここにカードを吸収する処理を書く
 		Debug.Log("こうげき！！\n");
         enemy.finaldm = player.playerad;
         //クリティカル確率
@@ -29,5 +30,4 @@ public class AttackCardController : ICardController
         //    int fainalad = GameMaster.Instance.Player.playerad - GameMaster.Instance.Enemy.enemyad
         //}
 	}
-
 }

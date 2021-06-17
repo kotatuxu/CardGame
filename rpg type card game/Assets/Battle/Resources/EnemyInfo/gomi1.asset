@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: gomi1
   m_EditorClassIdentifier: 
   name: gomi1
-  maxenemyhp: 40
-  enemyad: 7
-  getenemycd: 1.1
-  enemyap: 7
+  maxenemyhp: 100
+  enemyad: 5
+  getenemycd: 2
+  enemyap: 5
   icon: {fileID: 0}

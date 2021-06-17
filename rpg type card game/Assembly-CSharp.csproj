@@ -61,6 +61,7 @@
   <ItemGroup>
     <Compile Include="Assets\Battle\Player\Hand.cs" />
     <Compile Include="Assets\Battle\BattleScene.cs" />
+    <Compile Include="Assets\Battle\NumberIcon.cs" />
     <Compile Include="Assets\Map\MapPanel.cs" />
     <Compile Include="Assets\Battle\CardController\E_MagicCardController.cs" />
     <Compile Include="Assets\Battle\MenuFolder\DeckCardList.cs" />
@@ -91,7 +92,6 @@
     <Compile Include="Assets\Battle\CardController\E_AttackCardController.cs" />
     <Compile Include="Assets\Battle\Player\Deck.cs" />
     <Compile Include="Assets\Battle\Enemy\EnemyHand.cs" />
-    <Compile Include="Assets\Battle\NumberIcon.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

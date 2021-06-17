@@ -8,7 +8,7 @@ public class DeckCardList : MonoBehaviour
     public List<Card> deckcardList = new List<Card>();      //Addとほぼ同じしょり～
         //Deckに渡されるカードと同じIDのカードを生成する
         public void Create(int cardID){
-            Card card = Instantiate(GameMaster.Instance.cardPrefab,deckcardlistTransform,false);
+            Card card = Instantiate(Resources.Load<Card>("Prefab/Card"),deckcardlistTransform,false);
             //cardをInitしてcardIDとbattlecardをfalseにする
             card.Init(cardID,false,true);
         deckcardList.Add(card);

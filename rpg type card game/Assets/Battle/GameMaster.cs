@@ -27,11 +27,7 @@ public class GameMaster : MonoBehaviour {
     public Hand hand;          
     public Graveyard graveyard;
     public Enemy enemy;         
-    public EnemyDeck enemydeck;  
-    public EnemyHand enemyhand;
-    public EnemyGraveyard enemygraveyard;
     public SetButton setbutton;
-    public Card cardPrefab;
     public MapPanel mappanel;
     public BattleScene battlescene;
     public NumberIcon numbericon;
@@ -39,10 +35,11 @@ public class GameMaster : MonoBehaviour {
     public List<Card> EnemybattlecardList = new List<Card>(); //上と同じだが、順番も兼ねる
     //プレイヤーのデッキの場所を示す
     public int turn = 0;
+    private float CurrentTime = 0.0f;
+    private int CardIndex = 0;
     [SerializeField] Transform playerDeckTransform;
     [SerializeField] Transform playerHandTransform;
-    [SerializeField] Transform enemyDeckTransform;
-    [SerializeField] Transform enemyHandTransform;
+    [SerializeField] Transform enemyPanelTransform;
     //カードを示す
     public enum EnemyID{
         gomi1,
@@ -102,34 +99,39 @@ public class GameMaster : MonoBehaviour {
     void Lobby(){
         Debug.Log("一応ロビーいったよ");
         phase = Phase.STAGESELECT;
+        for(int i = 0; i < 10; i++){
+            int cardID = Random.Range(0,(int)CardID.E_SLASH);    //カードIDをランダムに生成する（０～カードの種類）
+            deckcardlist.Create(cardID);
+        }
     }
     void StageSelect(){
         mappanel.StageSelect();
         Debug.Log("StageSelectPhase");
     }
-    public void BattleStart(){      //セットボタンクリックされた
+    public void BattleStart(){      //ステージセレクトボタンクリックされた
+            //エネミーを作る
+            enemy = Instantiate(Resources.Load<Enemy>("Prefab/Enemy"),enemyPanelTransform,false);
+            int enemyID = Random.Range(0,(int)EnemyID.EnemyCount);
+            enemy.Init(enemyID);
+            //エネミーのカード生成
+        for(int i = 0; i < 10; i++){    
+            Card enemycard = Instantiate(Resources.Load<Card>("Prefab/Card"),enemy.enemyDeckTransform,false);
+            int cardID = Random.Range((int)CardID.E_SLASH,(int)CardID.CardCount);
+            enemycard.Init(cardID,false,false);
+            enemy.enemydeck.Add(enemycard);
+        }
         phase = Phase.INIT;
     }
     void InitPhase(){   //生成フェーズ
         Debug.Log("InitPhase");
         player.Init();
-        int enemyID = Random.Range(0,(int)EnemyID.EnemyCount);
-        enemy.Init(enemyID);
-        for(int i = 0; i < 10; i++){    //プレイヤーのカード生成
-            Card card = Instantiate(cardPrefab,playerDeckTransform,false);  //カードの生成（カードプレハブをプレイヤーデッキへ。座標０）
-            int cardID = Random.Range(0,(int)CardID.E_SLASH);    //カードIDをランダムに生成する（０～カードの種類）
-            card.Init(cardID,true,true);     //カードのInitをする（上で得たカードID,battlecardである(どこでもクリックできないように)）
-            deck.Add(card);     //手札に加える(上でInitしたカード)
-            deckcardlist.Create(cardID);
+        for(int i = 0; i < 10; i++){    //プレイヤーのカード生成            card.Init(cardID,true,true);     //カードのInitをする（上で得たカードID,battlecardである(どこでもクリックできないように)）
+            Card _card = Instantiate(Resources.Load<Card>("Prefab/Card"),playerDeckTransform,false);  //カードの生成（カードプレハブをプレイヤーデッキへ。座標０）
+            Card card = deckcardlist.deckcardList[i];
+            _card.Init(card.cardID,true,true);
+            deck.Add(_card);     //手札に加える(上でInitしたカード)
         }
 
-        for(int i = 0; i < 10; i++){    //エネミーのカード生成
-            Card enemycard = Instantiate(cardPrefab,enemyDeckTransform,false);
-            int cardID = Random.Range((int)CardID.E_SLASH,(int)CardID.CardCount);
-            //Debug.Log(cardID);
-            enemycard.Init(cardID,false,false);
-            enemydeck.Add(enemycard);
-        }
         //card.Init("スラッシュ");
         phase = Phase.DRAW;
     }
@@ -138,19 +140,20 @@ public class GameMaster : MonoBehaviour {
         int CardCount = 10;     //Random.Rangeの最大値
         for(int i = 0; i < 5; i++){     //カード５枚引く処理
             Card card = deck.Pull(Random.Range(0,deck.cardList.Count));   //Random.Range(最小値,最大値)
-            Card enemycard = enemydeck.Pull(Random.Range(0,enemydeck.enemycardList.Count));
+            Card enemycard = enemy.enemydeck.Pull(Random.Range(0,enemy.enemydeck.enemycardList.Count));
+            Debug.Log(enemycard);
             EnemybattlecardList.Add(enemycard);
             CardCount -= 1;     //Random.Rangeの最大値をデッキからカードを抜いた分引く（最大値の修正
             hand.Add(card);     //デッキのカードをハンドに渡す処理
             card.numbericon = Instantiate(numbericon,card.transform,false);
             card.numbericon.NotActive();
-            enemyhand.Add(enemycard);
+            enemy.enemyhand.Add(enemycard);
         }
         phase = Phase.SELECT;
     }
     public void SelectPhase(){      //セレクトフェーズ
         for(int i = 0; i < player.gaze; i++){       //敵のセレクトカードをgaze分見れる
-        Card _card = enemyhand.enemycardList[i];
+        Card _card = enemy.enemyhand.enemycardList[i];
         _card.CardDisplay();
         }
         //Debug.Log(battlecardList.Count);
@@ -170,11 +173,12 @@ public class GameMaster : MonoBehaviour {
         phase = Phase.BATTLE;
     }
     void BattlePhase(){     //バトルフェーズ
-    phase = Phase.END;
     Debug.Log("BattlePhase");
-    for(int turn = 0; turn < 5; turn++){
-        Card _card = battlecardList[turn];     //バトルカードリストの０番目を_cardとする
-        Card _enemycard = EnemybattlecardList[turn];
+    CurrentTime+= Time.deltaTime;
+    //for(int turn = 0; turn < 5; turn++){
+        if(CurrentTime >= 2.0f){
+        Card _card = battlecardList[CardIndex];     //バトルカードリストの０番目を_cardとする
+        Card _enemycard = EnemybattlecardList[CardIndex];
         _enemycard.CardDisplay();
         if(_card.cardSpeed < _enemycard.cardSpeed){     //0が速い 3が遅い
             Debug.Log("プレイヤー先行");
@@ -191,7 +195,7 @@ public class GameMaster : MonoBehaviour {
         if(enemy.enemyhp <= 0){
             battlescene.EndBattle();
             phase = Phase.BATTLEEND;
-            break;
+            return;
         }
         Debug.Log("プレイヤーに" + player.finaldm + "ダメージ！！");
         player.OnDamage();
@@ -199,36 +203,43 @@ public class GameMaster : MonoBehaviour {
             Debug.Log("ゲーム終了");
             battlescene.EndBattle();
             phase = Phase.LOBBY;
-            break;
+            return;
         }
         player.turn();
         graveyard.Add(_card);   //バトル終わったカードを墓地に送る
         enemy.turn();
-        enemygraveyard.Add(_enemycard);
+        enemy.enemygraveyard.Add(_enemycard);
         //カードの添え字検索
         _card.DataClear();
         int arrayNO = hand.cardList.FindIndex(c => c.battlenumber == _card.battlenumber);
         Card it = hand.Pull(arrayNO);
         //Debug.Log(arrayNO);
         _enemycard.E_DataClear();
-        arrayNO = enemyhand.enemycardList.FindIndex(c => c.battlenumber == _enemycard.battlenumber);
-        it = enemyhand.Pull(arrayNO);
+        arrayNO = enemy.enemyhand.enemycardList.FindIndex(c => c.battlenumber == _enemycard.battlenumber);
+        it = enemy.enemyhand.Pull(arrayNO);
+        CardIndex++;
+        Debug.Log(CardIndex);
+        CurrentTime = 0.0f;
         //Debug.Log(arrayNO);
         //Debug.Log(turn + "経過");
+        if(CardIndex == 5){
+            phase = Phase.END;
+            }
         }
  
     }
     void EndPhase(){
+        CardIndex = 0;
         EnemybattlecardList.Clear();
         battlecardList.Clear();
         Debug.Log("EndPhase");
         player.Phase();
         enemy.Phase();
-        if(enemydeck.enemycardList.Count == 0){     //墓地から手札へ
+        if(enemy.enemydeck.enemycardList.Count == 0){     //墓地から手札へ
             for(int i = 0; i<10; i++){
-                Card _enemycard = enemygraveyard.cardList[0];
-                enemydeck.Add(_enemycard);
-                enemygraveyard.Pull(0);
+                Card _enemycard = enemy.enemygraveyard.cardList[0];
+                enemy.enemydeck.Add(_enemycard);
+                enemy.enemygraveyard.Pull(0);
             }
         }
         if(deck.cardList.Count == 0){
@@ -255,11 +266,12 @@ public class GameMaster : MonoBehaviour {
             Card _card = graveyard.cardList[i];
             Destroy(_card.gameObject);
         }
-        
+        Destroy(enemy.gameObject);
         hand.cardList.Clear();
         EnemybattlecardList.Clear();
         battlecardList.Clear();
         deck.cardList.Clear();
         graveyard.cardList.Clear();
+        phase = Phase.STAGESELECT;
     }
 }

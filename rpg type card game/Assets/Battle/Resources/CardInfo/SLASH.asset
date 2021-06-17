@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: SLASH
   m_EditorClassIdentifier: 
   name: SLASH
-  number: 0
-  type: 0
   icon: {fileID: 21300000, guid: a7786b593df87e7498ce9652d041052d, type: 3}
   cardSpeed: 0
+  ID: 0
